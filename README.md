@@ -1,17 +1,18 @@
 
 # Table of Contents
 
-1.  [Context](#org04125a2)
-2.  [Objectives](#orgf06eb8f)
-3.  [Tutorials](#orgee6b5dc)
-    1.  [Indicators](#org1e71459)
-    2.  [Decision models](#orgbc4c3c8)
-    3.  [Building bots](#orgd7f3baf)
-    4.  [Data backends](#orgfe18674)
-4.  [Research Axes](#org72f0413)
-    1.  [Formalization and Probabilistic Modeling](#org56932f6)
-5.  [Technical Analysis](#orgd2d8835)
-6.  [References](#orgb2e6048)
+- [Table of Contents](#table-of-contents)
+- [Context](#context)
+- [Objectives](#objectives)
+- [Tutorials](#tutorials)
+  - [Indicators](#indicators)
+  - [Decision models](#decision-models)
+  - [Building bots](#building-bots)
+  - [Data backends](#data-backends)
+- [Research Axes](#research-axes)
+  - [Formalization and Probabilistic Modeling](#formalization-and-probabilistic-modeling)
+- [Technical Analysis](#technical-analysis)
+- [References](#references)
 
 
 
@@ -24,7 +25,7 @@ unique feature of cryptocurrency markets is their decentralization. This means t
 are not issued by a central authority (such as a state) but through algorithms executed on a
 computer network that ensures their coherence and transaction security. These markets evolve based
 on supply and demand, but being decentralized markets, they are often better protected from economic
-and political changes that generally impact traditional currencies <stachtchenko_manuel_2022>. 
+and political changes that generally impact traditional currencies <stachtchenko_manuel_2022>.  ghfghfghfgh
 
 Although the economic potential of these new currencies remains to be evaluated, they already offer
 certain developing countries a more reliable financing alternative than a traditional currency
