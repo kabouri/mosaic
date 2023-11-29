@@ -9,9 +9,13 @@ from dash.dash_table.Format import Group
 from dash import dash_table
 from dash.dash_table import DataTable
 from plotly.graph_objs import Box
+from ..trading import ExchangeCCXT
+from ..indicator import indicator as mid
 import dash_bootstrap_components as dbc
 import plotly.express as px
-import .backtest_class as btu
+import backtest_class as btu
+from ..predict_model import pm_ta as sta
+from ..predict_model import pm_stats as sml 
 import pkg_resources
 installed_pkg = {pkg.key for pkg in pkg_resources.working_set}
 if 'ipdb' in installed_pkg:
