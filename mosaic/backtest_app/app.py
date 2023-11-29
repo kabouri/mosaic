@@ -16,8 +16,8 @@ import dash_bootstrap_components as dbc
 import plotly.express as px
 import backtest_class as btu
 import mosaic.predict_model.pm_stats as pms
-import mosaic.decision_model.dm_ta as sta 
 import mosaic.decision_model.dm_base as sml
+import mosaic.decision_model.dm_ta as sta 
 import pkg_resources
 installed_pkg = {pkg.key for pkg in pkg_resources.working_set}
 if 'ipdb' in installed_pkg:
