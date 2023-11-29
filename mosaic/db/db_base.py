@@ -108,3 +108,4 @@ class DBBase(ObjMOSAIC):
         """DB delete data function."""
         raise NotImplementedError("This function must be implemented in class {}"
                                   .format(self.__class__))
+        print("hello")
