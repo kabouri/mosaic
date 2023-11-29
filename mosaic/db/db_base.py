@@ -107,5 +107,4 @@ class DBBase(ObjMOSAIC):
     def delete(self, endpoint, filter={}, **params):
         """DB delete data function."""
         raise NotImplementedError("This function must be implemented in class {}"
-                                  .format(self.__class__))
-        print("hello")
+                                  .format(self.__class__)) 
