@@ -1,19 +1,26 @@
-
+import pydantic
+import typing
 import pandas as pd
 import numpy as np
 import random
-import ..indicator as idu
+#import tqdm
+from pykalman import KalmanFilter
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from ..utils.data_management import HyperParams
+#from ..trading.core import SignalBase
+from ..core import ObjMOSAIC
+from ..predict_model.pm_base import PredictModelBase
+import mosaic.indicator as idu
 import pkg_resources
 installed_pkg = {pkg.key for pkg in pkg_resources.working_set}
 if 'ipdb' in installed_pkg:
     import ipdb  # noqa: F401
 
+# PandasSeries = typing.TypeVar('pandas.core.frame.Series')
+# PandasDataFrame = typing.TypeVar('pandas.core.frame.DataFrame')
 
-
-
-
-
-
+        
 
 
 
@@ -810,5 +817,7 @@ class StrategyPolyModel(Strategy):
         poly_features = PolynomialFeatures(degree=self.degree)
         X_new_poly = poly_features.fit_transform(X_new)
         return self.model.predict(X_new_poly)
+
+
 
 

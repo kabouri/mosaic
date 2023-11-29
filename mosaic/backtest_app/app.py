@@ -1,5 +1,6 @@
 import pandas as pd
-import Dash, dcc, html, State
+import dash, dcc, html
+from dash.dependencies import State
 from datetime import datetime
 from dash.dependencies import Input, Output
 import plotly.io as pio
@@ -9,13 +10,14 @@ from dash.dash_table.Format import Group
 from dash import dash_table
 from dash.dash_table import DataTable
 from plotly.graph_objs import Box
-from ..trading import ExchangeCCXT
-from ..indicator import indicator as mid
+from mosaic.trading.exchange import ExchangeCCXT
+from mosaic.indicator import indicator as mid
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import backtest_class as btu
-from ..predict_model import pm_ta as sta
-from ..predict_model import pm_stats as sml 
+import mosaic.predict_model.pm_stats as pms
+import mosaic.decision_model.dm_ta as sta 
+import mosaic.decision_model.dm_base as sml
 import pkg_resources
 installed_pkg = {pkg.key for pkg in pkg_resources.working_set}
 if 'ipdb' in installed_pkg:
