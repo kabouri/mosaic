@@ -1,25 +1,20 @@
-import pydantic
-import typing
+
 import pandas as pd
 import numpy as np
 import random
-#import tqdm
-#from pykalman import KalmanFilter
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-from mosaic.utils.data_management import HyperParams
-from mosaic.core import ObjMOSAIC
-from mosaic.predict_model.pm_base import PredictModelBase
-import mosaic.indicator as idu
+import mosaic.indicator  as idu
 import pkg_resources
 installed_pkg = {pkg.key for pkg in pkg_resources.working_set}
 if 'ipdb' in installed_pkg:
     import ipdb  # noqa: F401
 
-# PandasSeries = typing.TypeVar('pandas.core.frame.Series')
-# PandasDataFrame = typing.TypeVar('pandas.core.frame.DataFrame')
 
-        
+
+
+
+
+
+
 
 
 
@@ -677,65 +672,65 @@ class DonchianChannelStrategy(Strategy):
 
 
 
-# class KalmanMeanReversionStrategy(Strategy):
-#     def __init__(self, initial_state, observation_covariance, transition_covariance, transition_matrices):
-#         self.initial_state = initial_state
-#         self.observation_covariance = observation_covariance
-#         self.transition_covariance = transition_covariance
-#         self.transition_matrices = transition_matrices
+class KalmanMeanReversionStrategy(Strategy):
+    def __init__(self, initial_state, observation_covariance, transition_covariance, transition_matrices):
+        self.initial_state = initial_state
+        self.observation_covariance = observation_covariance
+        self.transition_covariance = transition_covariance
+        self.transition_matrices = transition_matrices
 
-#     def execute(self, prices):
-#         kf = KalmanFilter(initial_state_mean=self.initial_state,
-#                           observation_covariance=self.observation_covariance,
-#                           transition_covariance=self.transition_covariance,
-#                           transition_matrices=self.transition_matrices)
-#         print(kf)
-#         # Use Kalman filter to estimate the hidden state (mean price)
-#         state_means, _ = kf.filter(prices)
+    def execute(self, prices):
+        kf = KalmanFilter(initial_state_mean=self.initial_state,
+                          observation_covariance=self.observation_covariance,
+                          transition_covariance=self.transition_covariance,
+                          transition_matrices=self.transition_matrices)
+        print(kf)
+        # Use Kalman filter to estimate the hidden state (mean price)
+        state_means, _ = kf.filter(prices)
         
-#         # Define the trading signals based on the estimated state
-#         signals = pd.Series(index=prices.index, data=0)
-#         signals[prices < state_means[:, 0]] = 1  # Buy signal
-#         signals[prices > state_means[:, 0]] = -1  # Sell signal
+        # Define the trading signals based on the estimated state
+        signals = pd.Series(index=prices.index, data=0)
+        signals[prices < state_means[:, 0]] = 1  # Buy signal
+        signals[prices > state_means[:, 0]] = -1  # Sell signal
 
-#         return signals
+        return signals
 
 
-# class BehavioralVolatilityStrategy(Strategy):
-#     def __init__(self, atr_period=14, rsi_period=14, sentiment_threshold=0.3, atr_multiplier=1.5):
-#         self.atr_period = atr_period
-#         self.rsi_period = rsi_period
-#         self.sentiment_threshold = sentiment_threshold
-#         self.atr_multiplier = atr_multiplier
+class BehavioralVolatilityStrategy(Strategy):
+    def __init__(self, atr_period=14, rsi_period=14, sentiment_threshold=0.3, atr_multiplier=1.5):
+        self.atr_period = atr_period
+        self.rsi_period = rsi_period
+        self.sentiment_threshold = sentiment_threshold
+        self.atr_multiplier = atr_multiplier
 
-#     def execute(self, high, low, close, sentiment_index):
-#         # Calcul des indicateurs techniques
-#         atr = talib.ATR(high, low, close, timeperiod=self.atr_period)
-#         rsi = talib.RSI(close, timeperiod=self.rsi_period)
+    def execute(self, high, low, close, sentiment_index):
+        # Calcul des indicateurs techniques
+        atr = talib.ATR(high, low, close, timeperiod=self.atr_period)
+        rsi = talib.RSI(close, timeperiod=self.rsi_period)
         
-#         # Calcul de la moyenne mobile de l'ATR
-#         atr_ma = pd.Series(atr).rolling(window=60).mean()
+        # Calcul de la moyenne mobile de l'ATR
+        atr_ma = pd.Series(atr).rolling(window=60).mean()
 
-#         # Initialisation des signaux de trading
-#         signals = pd.Series(index=close.index, data=0)  # 0 pour 'aucun signal'
+        # Initialisation des signaux de trading
+        signals = pd.Series(index=close.index, data=0)  # 0 pour 'aucun signal'
 
-#         # Signaux d'achat
-#         buy_signals = (
-#             (atr > atr_ma * self.atr_multiplier) & 
-#             (rsi < 30) & 
-#             (sentiment_index < self.sentiment_threshold)
-#         )
-#         signals[buy_signals] = 1  # 1 pour 'achat'
+        # Signaux d'achat
+        buy_signals = (
+            (atr > atr_ma * self.atr_multiplier) & 
+            (rsi < 30) & 
+            (sentiment_index < self.sentiment_threshold)
+        )
+        signals[buy_signals] = 1  # 1 pour 'achat'
 
-#         # Signaux de vente
-#         sell_signals = (
-#             (atr < atr_ma / self.atr_multiplier) & 
-#             (rsi > 70) & 
-#             (sentiment_index > (1 - self.sentiment_threshold))
-#         )
-#         signals[sell_signals] = -1  # -1 pour 'vente'
+        # Signaux de vente
+        sell_signals = (
+            (atr < atr_ma / self.atr_multiplier) & 
+            (rsi > 70) & 
+            (sentiment_index > (1 - self.sentiment_threshold))
+        )
+        signals[sell_signals] = -1  # -1 pour 'vente'
 
-#         return signals
+        return signals
 
 
 
@@ -779,43 +774,41 @@ class DojiStrategy(Strategy):
 
 
 
-# class StrategyPolyModel(Strategy):
-#     def __init__(self, degree=2):
-#         self.degree = degree
-#         self.model = None
+class StrategyPolyModel(Strategy):
+    def __init__(self, degree=2):
+        self.degree = degree
+        self.model = None
 
-#     def train_model(self, X, y):
-#         """
-#         Entraîne le modèle de régression polynomiale.
-#         X : données d'entrée (OHLCV retardées).
-#         y : rendements du Bitcoin à prédire.
-#         """
-#         # Création des caractéristiques polynomiales
-#         poly_features = PolynomialFeatures(degree=self.degree)
-#         X_poly = poly_features.fit_transform(X)
+    def train_model(self, X, y):
+        """
+        Entraîne le modèle de régression polynomiale.
+        X : données d'entrée (OHLCV retardées).
+        y : rendements du Bitcoin à prédire.
+        """
+        # Création des caractéristiques polynomiales
+        poly_features = PolynomialFeatures(degree=self.degree)
+        X_poly = poly_features.fit_transform(X)
 
-#         # Séparation en ensembles d'entraînement et de test
-#         X_train, X_test, y_train, y_test = train_test_split(X_poly, y, test_size=0.2, random_state=42)
+        # Séparation en ensembles d'entraînement et de test
+        X_train, X_test, y_train, y_test = train_test_split(X_poly, y, test_size=0.2, random_state=42)
 
-#         # Entraînement du modèle
-#         self.model = LinearRegression()
-#         self.model.fit(X_train, y_train)
+        # Entraînement du modèle
+        self.model = LinearRegression()
+        self.model.fit(X_train, y_train)
 
-#         # Évaluation du modèle
-#         y_pred = self.model.predict(X_test)
-#         mse = mean_squared_error(y_test, y_pred)
-#         rmse = np.sqrt(mse)
-#         print(f"RMSE: {rmse}")
+        # Évaluation du modèle
+        y_pred = self.model.predict(X_test)
+        mse = mean_squared_error(y_test, y_pred)
+        rmse = np.sqrt(mse)
+        print(f"RMSE: {rmse}")
 
-#     def predict(self, X_new):
-#         """
-#         Prédit les rendements du Bitcoin basés sur de nouvelles données d'entrée.
-#         X_new : nouvelles données OHLCV retardées.
-#         """
-#         poly_features = PolynomialFeatures(degree=self.degree)
-#         X_new_poly = poly_features.fit_transform(X_new)
-#         return self.model.predict(X_new_poly)
-
-
+    def predict(self, X_new):
+        """
+        Prédit les rendements du Bitcoin basés sur de nouvelles données d'entrée.
+        X_new : nouvelles données OHLCV retardées.
+        """
+        poly_features = PolynomialFeatures(degree=self.degree)
+        X_new_poly = poly_features.fit_transform(X_new)
+        return self.model.predict(X_new_poly)
 
 

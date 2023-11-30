@@ -1,6 +1,13 @@
+import mosaic
+import mosaic.decision_model.dm_ta as sta
+import mosaic.decision_model.dm_base as sml
+import mosaic.indicator as mid
+import pkg_resources
+installed_pkg = {pkg.key for pkg in pkg_resources.working_set}
+if 'ipdb' in installed_pkg:
+    import ipdb  # noqa: F401import pandas as pd
 import pandas as pd
-import dash, dcc, html
-from dash.dependencies import State
+import dash
 from datetime import datetime
 from dash.dependencies import Input, Output
 import plotly.io as pio
@@ -10,15 +17,39 @@ from dash.dash_table.Format import Group
 from dash import dash_table
 from dash.dash_table import DataTable
 from plotly.graph_objs import Box
-from mosaic.trading.exchange import ExchangeCCXT
-from mosaic.indicator import indicator as mid
+import mosaic
+import importlib
+import os
+import dash
 import dash_bootstrap_components as dbc
-import plotly.express as px
+import sys
+from scipy import stats
 import backtest_class as btu
+import hashlib
+import json
+from dash import Dash, dcc, html, State
+import dash
+from dash import dcc
+from dash import html
+import time
+import numpy as np
+from dash import callback_context
+import plotly.express as px
+import plotly.graph_objects as go
 import mosaic.predict_model.pm_stats as pms
-import mosaic.decision_model.dm_base as sml
-import mosaic.decision_model.dm_ta as sta 
+from plotly.subplots import make_subplots
+import requests
+#import mosaic.decision_model as sta
+import numpy as np
+import importlib
+import os
+import sys
+import tqdm
+import time
+from mosaic.trading.exchange import ExchangeCCXT
 import pkg_resources
+#mosaic_version = pkg_resources.get_distribution(" mosaic_abdel.mosaic_test").version
+#print('mosaic version:', mosaic_version)
 installed_pkg = {pkg.key for pkg in pkg_resources.working_set}
 if 'ipdb' in installed_pkg:
     import ipdb  # noqa: F401
