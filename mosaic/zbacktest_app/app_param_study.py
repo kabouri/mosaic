@@ -6,16 +6,16 @@ from datetime import datetime
 import backtest_class as btu
 from mosaic.trading.exchange import ExchangeCCXT
 import pkg_resources
-import mosaic.decision_model.dm_ta as sta
+from mosaic.decision_model import dm_ta as sta
 import mosaic.decision_model.dm_base as sml
-import mosaic.indicator as mid
+import mosaic.indicator as mid 
 import pkg_resources
 installed_pkg = {pkg.key for pkg in pkg_resources.working_set}
 if 'ipdb' in installed_pkg:
     import ipdb  # noqa: F401import pandas as pd
 import pandas as pd
 import base64
-import dash
+import dash   
 from datetime import datetime
 from dash.dependencies import Input, Output
 import plotly.io as pio

@@ -1,2 +1,2 @@
 from .version import __version__
-from .core import ObjMOSAIC
+from .core import ObjMOSAIC  
