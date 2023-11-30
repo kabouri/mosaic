@@ -1,4 +1,3 @@
-import mosaic
 import mosaic.decision_model.dm_ta as sta
 import mosaic.decision_model.dm_base as sml
 import mosaic.indicator as mid
