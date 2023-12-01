@@ -95,7 +95,7 @@ def fetch_ohlcv(symbol, timeframe='1h', start_date=None, end_date=None,  exchang
                     timeframe=timeframe,
                     index="datetime",
 
-                    data_dir=".",
+                    data_dir="ohlcv_binance",
                     force_reload=False,
                     progress_mode=True,
                 )
