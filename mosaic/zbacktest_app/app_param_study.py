@@ -4,6 +4,10 @@ import tqdm
 import os
 from datetime import datetime
 import backtest_class as btu
+import sys
+sys.path.insert(0, '/home/abdel/Bureau/new_project/mosaic')
+import mosaic
+import mosaic
 from mosaic.trading.exchange import ExchangeCCXT
 import pkg_resources
 from mosaic.decision_model import dm_ta as sta
@@ -91,7 +95,7 @@ def fetch_ohlcv(symbol, timeframe='1h', start_date=None, end_date=None,  exchang
                     symbol=symbol,
                     timeframe=timeframe,
                     index="datetime",
-                    data_dir="data",
+                    data_dir=".",
                     force_reload=False,
                     progress_mode=True,
                 )

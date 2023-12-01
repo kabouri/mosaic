@@ -6,6 +6,7 @@ import pandas as pd
 import colored
 import ccxt
 import uuid
+from typing import Optional
 from ..core import ObjMOSAIC
 from ..db.db_base import DBBase
 from ..utils.data_management import \
@@ -60,8 +61,8 @@ class OrderBase(ObjMOSAIC):
     quote_price: float = pydantic.Field(
         None, description="Asset price in quote currency (e.g. in USDT for BTC/USDT symbol)")
 
-    quote_price_at_create: float = pydantic.Field(
-        None, description="Quote price at order creation")
+    quote_price_at_create: Optional[float] = None  # This allows None to be a valid value
+
     
     quote_price_exec: float = pydantic.Field(
         None, description="Order quote price execution")

@@ -4,7 +4,6 @@ import pandas as pd
 import numpy as np
 import random
 #import tqdm
-#from pykalman import KalmanFilter
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from mosaic.utils.data_management import HyperParams
@@ -675,30 +674,6 @@ class DonchianChannelStrategy(Strategy):
         return order_value_s
 
 
-
-
-# class KalmanMeanReversionStrategy(Strategy):
-#     def __init__(self, initial_state, observation_covariance, transition_covariance, transition_matrices):
-#         self.initial_state = initial_state
-#         self.observation_covariance = observation_covariance
-#         self.transition_covariance = transition_covariance
-#         self.transition_matrices = transition_matrices
-
-#     def execute(self, prices):
-#         kf = KalmanFilter(initial_state_mean=self.initial_state,
-#                           observation_covariance=self.observation_covariance,
-#                           transition_covariance=self.transition_covariance,
-#                           transition_matrices=self.transition_matrices)
-#         print(kf)
-#         # Use Kalman filter to estimate the hidden state (mean price)
-#         state_means, _ = kf.filter(prices)
-        
-#         # Define the trading signals based on the estimated state
-#         signals = pd.Series(index=prices.index, data=0)
-#         signals[prices < state_means[:, 0]] = 1  # Buy signal
-#         signals[prices > state_means[:, 0]] = -1  # Sell signal
-
-#         return signals
 
 
 # class BehavioralVolatilityStrategy(Strategy):

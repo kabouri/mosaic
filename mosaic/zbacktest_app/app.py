@@ -1,4 +1,7 @@
+import sys
+sys.path.insert(0, '/home/abdel/Bureau/new_project/mosaic')
 import mosaic
+
 import mosaic.decision_model.dm_ta as sta
 import mosaic.decision_model.dm_base as sml
 import mosaic.indicator as mid
@@ -209,7 +212,6 @@ strategy_dict = {
     'MACD_SMA_Strategy':sta.MACD_SMA_Strategy,
     'BreakoutStrategy':sta.BreakoutStrategy,
     'MACD_RSIStrategy':sta.MACD_RSIStrategy,
-    'KalmanMeanReversionStrategy': sta.KalmanMeanReversionStrategy,
     'DojiStrategy':sta.DojiStrategy,
     'DM1ML':sml.DM1ML,
     'DM2ML':sml.DM2ML,
