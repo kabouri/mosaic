@@ -95,7 +95,7 @@ def fetch_ohlcv(symbol, timeframe='1h', start_date=None, end_date=None,  exchang
                     symbol=symbol,
                     timeframe=timeframe,
                     index="datetime",
-                    data_dir=".",
+                    data_dir="ohlcv_binance",
                     force_reload=False,
                     progress_mode=True,
                 )
@@ -662,14 +662,14 @@ if tabs == "Configuration":
             #filename = f"Résultats_{strategy_name}_{database_name}_{current_time}.csv"
 
             # Chemin complet pour enregistrer le fichier
-            save_path = f"/home/abdel/Bureau/Etude_parametrique/{filename}"
+            #save_path = f"/home/abdel/Bureau/Etude_parametrique/{filename}"
 
              # Enregistrer le DataFrame en CSV dans le dossier spécifié
-            st.session_state.results_df.to_csv(save_path, index=False)
+            #st.session_state.results_df.to_csv(save_path, index=False)
 
             # Créer un lien de téléchargement pour le fichier
-            href = f'<a href="file://{save_path}" download="{filename}">Télécharger les résultats</a>'
-            st.markdown(href, unsafe_allow_html=True)
+            #href = f'<a href="file://{save_path}" download="{filename}">Télécharger les résultats</a>'
+            #st.markdown(href, unsafe_allow_html=True)
 
 
         
