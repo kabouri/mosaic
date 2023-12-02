@@ -14,25 +14,33 @@ if 'ipdb' in installed_pkg:
 
 class RSI(IndicatorOHLCV):
 
-    length: int = Field(
-        1, description="MA window length used to compute the indicator")
+    window: int = Field(
+        0, description="MA window size used to compute the indicator")
     mode: str = Field(
-        "ta", description="Calulation mode 'ta' or 'simple'")
-
+        "classic", description="Calulation mode 'classic' or 'wilder'")
+    indic_fmt: str = Field(
+        "RSI_{window}", description="Indicator name format")
     @property
-    def bw_length(self):
-        return super().bw_length + self.length
+    def bw_window(self):
+        return super().bw_window + self.window
+
+    # @property
+    # def bw_lengt(self):
+    #     return super().bw_length + self.length
 
     @property
     def names_map(self):
         """Indicator names format mapping"""
         return {
-            "rsi": f"RSI_{self.length}",
+            "rsi": f"RSI_{self.window}",
         }
+    @property
+    def indic_name(self):
+        return self.indic_fmt.format(window=self.window)
 
     
     def compute(self, ohlcv_df, **kwrds):
-        """Compute indicator"""
+        """Compute RSI"""
         super().compute(ohlcv_df, **kwrds)
 
         # OHLCV variable identification
@@ -41,7 +49,7 @@ class RSI(IndicatorOHLCV):
 
         indic_df = pd.DataFrame(index=ohlcv_df.index)
 
-        if self.mode == "simple":
+        if self.mode == "classic":
             close_delta = data_close.diff(1)
 
             delta_up = close_delta.copy(deep=True)
@@ -49,14 +57,16 @@ class RSI(IndicatorOHLCV):
             delta_down = close_delta.copy(deep=True)
             delta_down[delta_down > 0] = 0
 
-            roll_up = delta_up.rolling(self.length).mean()
-            roll_down = delta_down.rolling(self.length).mean()
+            roll_up = delta_up.rolling(self.window).mean()
+            roll_down = delta_down.rolling(self.window).mean()
 
-            indic_df[self.names('rsi')] = 100*roll_up/(roll_up + roll_down.abs())
-        elif self.mode == "ta":
-            indic_df[self.names('rsi')] = ta.rsi(data_close, length=self.length)
+            indic_df[self.indic_name] = 100*roll_up/(roll_up + roll_down.abs())
+        elif self.mode == "wilder":
+            indic_df[self.indic_name]= ta.rsi(data_close, length=self.window)
         else:
             raise ValueError(f"{self.mode} not supported")
+        # ipdb.set_trace()
+        #return self.apply_offset(indic_df)
 
         # if self.levels:
         #     indic_df[self.indic_d_name] = \
