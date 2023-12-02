@@ -15,3 +15,4 @@ dash
 influxdb_client
 ipdb
 dash_bootstrap_components
+tensorflow
