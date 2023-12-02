@@ -6,7 +6,7 @@ exec(open('mosaic/version.py').read())
 
 setup(name='mosaic',
       version=__version__,
-      url='https://github.com/edgemind-sas/mosaic',
+      url='https://github.com/kabouri/mosaic',
       author='Abdelwahed Kabouri',
       author_email='abdel.kabouri91@gmail.com',
       maintainer='Abdelwahed Kabouri',
