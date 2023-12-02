@@ -573,18 +573,6 @@ config_tab_layout = dbc.Container([
                 value='RSIStrategy',
                 style={'color': 'black'}
             ),
-            html.Label('numb buys:', style={'color': 'white'}),
-            dcc.Dropdown(
-                id='num_buys-dropdown',
-                options=[
-                    {'label': '1 achat', 'value': 1},
-                    {'label': '2 achat', 'value': 2},
-                     {'label': '3 achat', 'value': 3},
-                      {'label': '4 achat', 'value': 4},
-                ],
-                value=1,
-                style={'color': 'black'}
-            ),
 
             html.Label('Variable for Buy Orders:', style={'color': 'white'}),
             dcc.Dropdown(
@@ -770,14 +758,13 @@ def instantiate_pm(pm_value, kwargs):
     State('date-picker-range_fit', 'start_date'),
     State('date-picker-range_fit', 'end_date'),
     State('exchange-dropdown', 'value'),
-    State('num_buys-dropdown', 'value'),
     State('var-buy-dropdown', 'value'),
     State('var-sell-dropdown', 'value'),
     State('fee-type', 'value'))
 
 
 
-def update_output(n_clicks,strategy_name, input_fields,symbol, timeframe, start_date, end_date,start_date_fit,end_date_fit,exchange_name,num_buys, var_buy, var_sell, fee_type):
+def update_output(n_clicks,strategy_name, input_fields,symbol, timeframe, start_date, end_date,start_date_fit,end_date_fit,exchange_name, var_buy, var_sell, fee_type):
     if n_clicks is None:
         return 'Enter strategy parameters and press Run the backtest.', None, None, None, None, None, None,None
     # Vérification des paramètres nécessaires
@@ -838,7 +825,7 @@ def update_output(n_clicks,strategy_name, input_fields,symbol, timeframe, start_
     fee_info = f"Fees for {symbol} on {exchange_name}: Maker fee - {maker_fee}, Taker fee - {taker_fee}"
     selected_fee = 0 if fee_type == 0 else (maker_fee if fee_type == 'maker' else taker_fee)
     bt=btu.Backtest(ohlcv_df,transaction_cost=selected_fee,var_buy_on=var_buy, var_sell_on=var_sell)
-    bt_results = bt.backtest_strategy_long(strategy,num_buys_before_sell=num_buys)
+    bt_results = bt.backtest_strategy_long(strategy)
     bt_eval_indic, bt_eval_raw = bt.backtest_eval()
     
     
