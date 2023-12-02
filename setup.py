@@ -7,17 +7,17 @@ exec(open('mosaic/version.py').read())
 setup(name='mosaic',
       version=__version__,
       url='https://github.com/edgemind-sas/mosaic',
-      author='Roland Donat',
-      author_email='roland.donat@gmail.com, roland.donat@edgemind.net, roland.donat@alphabayes.fr',
-      maintainer='Roland Donat',
-      maintainer_email='roland.donat@gmail.com',
+      author='Abdelwahed Kabouri',
+      author_email='abdel.kabouri91@gmail.com',
+      maintainer='Abdelwahed Kabouri',
+      maintainer_email='abdel.kabouri91@gmail.com',
       keywords='trading machine-learning algorithmic backtesting',
       classifiers=[
           'Development Status :: 3 - Alpha',
           'Intended Audience :: Science/Research',
           'License :: OSI Approved :: MIT License',
           'Operating System :: POSIX :: Linux',
-          'Programming Language :: Python :: 3.7',
+          'Programming Language :: Python :: 3.10',
           'Topic :: Scientific/Engineering :: Artificial Intelligence'
       ],
       packages=find_packages(
