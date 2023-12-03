@@ -7,7 +7,6 @@ import backtest_class as btu
 import sys
 sys.path.insert(0, '/home/abdel/Bureau/new_project/mosaic')
 import mosaic
-import mosaic
 from mosaic.trading.exchange import ExchangeCCXT
 import pkg_resources
 from mosaic.decision_model import dm_ta as sta
@@ -17,7 +16,6 @@ import pkg_resources
 installed_pkg = {pkg.key for pkg in pkg_resources.working_set}
 if 'ipdb' in installed_pkg:
     import ipdb  # noqa: F401import pandas as pd
-import pandas as pd
 import base64
 import dash   
 from datetime import datetime
@@ -31,7 +29,6 @@ from dash.dash_table.Format import Group
 from dash import dash_table
 from dash.dash_table import DataTable
 from plotly.graph_objs import Box
-import mosaic
 import importlib
 import os
 import dash
@@ -52,7 +49,6 @@ from plotly.subplots import make_subplots
 import requests
 #import mosaic.decision_model as sta
 import numpy as np
-import importlib
 import os
 import sys
 import tqdm
