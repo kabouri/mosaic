@@ -110,8 +110,7 @@ def fetch_ohlcv(symbol, timeframe='1h', start_date=None, end_date=None,  exchang
     # since = None
     # if start_date:
     #     since = int(pd.Timestamp(start_date).timestamp() * 1000)
-    
-    # all_candles = []
+         # all_candles = []
     # while True:
     #     exchange = getattr(ccxt, exchange_name)()
     #     candles = exchange.fetch_ohlcv(symbol, timeframe, since)
@@ -671,7 +670,7 @@ app.layout = dbc.Container([
         dbc.Tab(label="Configuration", children=config_tab_layout),
         dbc.Tab(label="Statistiques des stratégies", children=results_tab_layout),
     ],),
-],fluid=True,style={'backgroundColor': 'lightblue'})
+], fluid=True, style={'backgroundColor': '#ecf0f1'})  # Nouvelle couleur de fond globale
 
 ######################################################  Callbacks et logique de l'application  ###############################################
 
