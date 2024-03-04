@@ -733,7 +733,7 @@ else:  # Onglet "Résultats"
                nombre_trade=data_to_use.groupby(param)['Nombre_transactions'].mean().reset_index()
                performance_moyenne=pd.concat([performance_moy,nombre_trade['Nombre_transactions']], axis=1)
                heatmap = go.Heatmap(
-               x=performance_moyenne[param_columns[2]],
+               x=performance_moyenne[param_columns[2]], 
                y=performance_moyenne[param_columns[3]],
                z=performance_moyenne['Performance'],
                customdata=performance_moyenne['Nombre_transactions'],

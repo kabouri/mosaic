@@ -2,7 +2,7 @@ import sys
 sys.path.insert(0, '/home/abdel/Bureau/new_project/mosaic')
 import mosaic
 
-import mosaic.decision_model.dm_ta as sta
+import mosaic.decision_model.dm_ta as sta 
 import mosaic.decision_model.dm_base as sml
 import mosaic.indicator as mid
 import pkg_resources
@@ -74,7 +74,7 @@ exchange.connect()
 
 
 
-
+qsfcdsf
 
 
 
@@ -553,8 +553,8 @@ config_tab_layout = dbc.Container([
             ),
             dcc.DatePickerRange(
                 id='date-picker-range',
-                start_date='2021-04-01',
-                end_date='2021-07-01',
+                start_date='2018-01-01',
+                end_date='2019-01-01',
                 display_format='YYYY-MM-DD',
                 style={'color': 'black'}
             ),
@@ -664,7 +664,6 @@ results_tab_layout = dbc.Container([
 ],fluid=True,style={'background-color': 'lightblue'})
 
 # Créez la mise en page globale
-
 app.layout = dbc.Container([
     dbc.Tabs([
         dbc.Tab(label="Configuration", children=config_tab_layout),
@@ -1056,8 +1055,11 @@ def update_output(n_clicks,strategy_name, input_fields,symbol, timeframe, start_
                         xaxis_title='',**layout,
                         yaxis_title='Prix', title_font=dict( size=20, ))
     
+    
 ############################################################################################################
 
     return results_table,dcc.Graph(figure=fig),dcc.Graph(figure=fig1),dcc.Graph(figure=fig2),dcc.Graph(figure=fig3),dcc.Graph(figure=fig4),dcc.Graph(figure=fig5),debug_text
 if __name__ == '__main__':
     app.run_server(port=8040, debug=True)
+    
+ 
