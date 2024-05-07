@@ -53,3 +53,7 @@ setup(name='mosaic',
       ],
       zip_safe=False,
       )
+
+
+# /workspaces/mosaic/.conda/bin/python /workspaces/mosaic/setup.py install
+# try with this commande in the terminal 
