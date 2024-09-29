@@ -1,6 +1,6 @@
 import sys
 sys.path.insert(0, '/home/abdel/Bureau/new_project/mosaic')
-import mosaic 
+import mosaic   
 import mosaic.decision_model.dm_ta as sta 
 import mosaic.decision_model.dm_base as sml
 import mosaic.indicator as mid
