@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0, '/home/abdel/Bureau/new_project/mosaic')
+#sys.path.insert(0, '/home/abdel/Bureau/new_project/mosaic')
 import mosaic   
 import mosaic.decision_model.dm_ta as sta 
 import mosaic.decision_model.dm_base as sml
@@ -86,22 +86,29 @@ def fetch_ohlcv(symbol, timeframe='1h', start_date=None, end_date=None,  exchang
 
     exchange=ExchangeCCXT(name=exchange_name)
     exchange.connect()
-    df=exchange.get_historic_ohlcv(
-                    date_start=start_date+" 00:00:00",
-                    date_end=end_date+" 00:00:00",
-                    symbol=symbol,
-                    timeframe=timeframe,
-                    index="datetime",
+    df = exchange.get_historic_ohlcv(
+    date_start=start_date + " 00:00:00",
+    date_end=end_date + " 00:00:00",
+    symbol=symbol,
+    timeframe=timeframe,
+    index="datetime",
+    data_dir="ohlcv_binance",
+    force_reload=False,
+    progress_mode=True,
+)
 
-                    data_dir="ohlcv_binance",
-                    force_reload=False,
-                    progress_mode=True,
-                )
-    
-    df.index.name='time'
-    df=df.reset_index()
-    df['time'] = pd.to_datetime(df['time'],utc=True)
+# Renommer l'index
+    df.index.name = 'time'
+# Réinitialiser l'index
+    df = df.reset_index()
+
+# Convertir en datetime avec UTC et retirer le fuseau horaire
+    df['time'] = pd.to_datetime(df['time'], utc=True).dt.tz_localize(None)
+
+# Remettre la colonne 'time' en tant qu'index
     df.set_index('time', inplace=True)
+
+# Supprimer les index dupliqués
     df = df[~df.index.duplicated(keep='first')]
     #df.index = df.index.tz_localize('UTC')  # Définit le fuseau horaire sur UTC
     #ipdb.set_trace()

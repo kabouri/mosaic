@@ -498,14 +498,17 @@ class ExchangeCCXT(ExchangeOnline):
                     nb_fetch_tries = 0
                     fetching_done = True
 
-            # Convert UTC timestamp to local timezone
+           # Convert UTC timestamp to local timezone
             ohlcv_cur_df["datetime"] = \
-                pd.to_datetime(ohlcv_cur_df["timestamp"],
-                               unit="ms",
-                               utc=True).dt.tz_convert(local_tz)
-            # Convert local tz datetime to local timestamp
+            pd.to_datetime(ohlcv_cur_df["timestamp"],
+                   unit="ms",
+                   utc=True).dt.tz_convert(local_tz)
+
+           # Retirer le fuseau horaire avant de convertir en timestamp
             ohlcv_cur_df["timestamp"] = \
-                (ohlcv_cur_df["datetime"].astype(int)/1e6).astype(int)
+            (ohlcv_cur_df["datetime"].dt.tz_convert('UTC').astype(np.int64) // 10**6).astype(int)
+            #ohlcv_cur_df["timestamp"] = \
+            #(ohlcv_cur_df["datetime"].dt.tz_localize(None).astype(int) / 1e6).astype(int)
 
             idx_na = ohlcv_cur_df.isna().any(axis=1)
             nb_na = idx_na.sum()
