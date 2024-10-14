@@ -504,10 +504,17 @@ class ExchangeCCXT(ExchangeOnline):
                    unit="ms",
                    utc=True).dt.tz_convert(local_tz)
 
+
+           # Si la colonne 'datetime' a un fuseau horaire, on le supprime d'abord
+            if ohlcv_cur_df["datetime"].dt.tz is not None:
+               ohlcv_cur_df["datetime"] = ohlcv_cur_df["datetime"].dt.tz_convert(None)
+
+# Conversion en timestamp Unix (en millisecondes)
+            ohlcv_cur_df["timestamp"] = (ohlcv_cur_df["datetime"].astype('int64') // 1e6).astype(int)
+
            # Retirer le fuseau horaire avant de convertir en timestamp
-            ohlcv_cur_df["timestamp"] = \
-            (ohlcv_cur_df["datetime"].dt.tz_convert('UTC').astype(np.int64) // 10**6).astype(int)
             #ohlcv_cur_df["timestamp"] = \
+
             #(ohlcv_cur_df["datetime"].dt.tz_localize(None).astype(int) / 1e6).astype(int)
 
             idx_na = ohlcv_cur_df.isna().any(axis=1)

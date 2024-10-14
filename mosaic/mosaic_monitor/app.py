@@ -137,7 +137,6 @@ def fetch_ohlcv(symbol, timeframe='1h', start_date=None, end_date=None,  exchang
     #     df = df[df.index <= end_date]
     
     return df
-
 # # Utilisation
 # symbol = 'BTC/USDT'
 # start_date = '2020-10-01'
@@ -790,7 +789,7 @@ def update_output(n_clicks,strategy_name, input_fields,symbol, timeframe, start_
         # Utilisez ohlcv_df comme votre base de données pour les stratégies
     else:
         return 'Please enter a symbol.', None, None, None, None, None, None, None
-   
+
     # Logique de validation pour 'pm'
     if 'pm' in kwargs:
         try:
@@ -821,7 +820,7 @@ def update_output(n_clicks,strategy_name, input_fields,symbol, timeframe, start_
      # Après avoir récupéré les données avec fetch_ohlcv
     if ohlcv_df.index.duplicated().any():
        ohlcv_df = ohlcv_df[~ohlcv_df.index.duplicated(keep='first')]
-       
+
     # Exécutez le backtesting
     debug_text = f"Instanciating {strategy_name} with arguments: {kwargs}"
     maker_fee, taker_fee = get_trading_fees(exchange_name,symbol)
