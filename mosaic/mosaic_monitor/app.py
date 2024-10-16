@@ -104,7 +104,8 @@ def fetch_ohlcv(symbol, timeframe='1h', start_date=None, end_date=None,  exchang
 
 # Convertir en datetime avec UTC et retirer le fuseau horaire
     df['time'] = pd.to_datetime(df['time'], utc=True).dt.tz_localize(None)
-
+    # Convertir la colonne 'time' en UTC
+    df['time'] = df['time'].dt.tz_convert('UTC')
 # Remettre la colonne 'time' en tant qu'index
     df.set_index('time', inplace=True)
 
@@ -789,7 +790,6 @@ def update_output(n_clicks,strategy_name, input_fields,symbol, timeframe, start_
         # Utilisez ohlcv_df comme votre base de données pour les stratégies
     else:
         return 'Please enter a symbol.', None, None, None, None, None, None, None
-
     # Logique de validation pour 'pm'
     if 'pm' in kwargs:
         try:
